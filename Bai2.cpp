@@ -1,32 +1,35 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
 // Hàm kiểm tra xem một số có phải là số chính phương hay không
 int isPerfectSquare(int num) {
-    int sqrt_num = sqrt(num);
-    return sqrt_num * sqrt_num == num;
+    int squareRoot = sqrt(num);
+    return squareRoot * squareRoot == num;
 }
 
-// Hàm đếm số chính phương và in ra các số đó nhỏ hơn n
+// Hàm đếm số chính phương nhỏ hơn n và in ra chúng
 void countAndPrintPerfectSquares(int n) {
-    int count = 0; // Biến đếm số lượng số chính phương
-    printf("Cac so chinh phuong nho hon %d la: ", n);
-    // Lặp qua tất cả các số từ 1 đến n-1
+    printf("Cac so chinh phuong nho hon %d la:\n", n);
     for (int i = 1; i < n; i++) {
-        // Kiểm tra xem số có phải là số chính phương không
         if (isPerfectSquare(i)) {
-            count++; // Tăng biến đếm lên 1
-            printf("%d ", i); // In số chính phương ra màn hình
+            printf("%d ", i);
         }
     }
-    printf("\nTong so chinh phuong la: %d\n", count); // In tổng số chính phương ra màn hình
+    printf("\n");
 }
 
-// Hàm main
 int main() {
-    int n;
-    printf("Nhap so nguyen duong n: ");
-    scanf("%d", &n);
-    countAndPrintPerfectSquares(n); // Gọi hàm để đếm và in ra các số chính phương nhỏ hơn n
+    // Khởi tạo seed cho hàm ngẫu nhiên
+    srand(time(NULL));
+    
+    // Tạo số ngẫu nhiên trong khoảng từ 1 đến 100
+    int n = rand() % 100 + 1;
+    
+    printf("So nguyen duong ngau nhien duoc chon: %d\n", n);
+    
+    countAndPrintPerfectSquares(n);
+
     return 0;
 }
